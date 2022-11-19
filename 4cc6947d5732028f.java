@@ -1,7 +1,7 @@
 import javax.swing.*;				//자바책 444p 참조로 제작함
 import java.awt.*;
 import java.awt.event.*;
-
+//변경
 
 public class 댕비서 extends JFrame implements ActionListener {
 	JButton jbtn1, jbtn2, jbtn3, jbtn4;
