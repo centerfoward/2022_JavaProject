@@ -36,7 +36,9 @@ public class 댕비서 extends JFrame implements ActionListener {
 		}
 		
 		if(e.getSource()==jbtn3) {}
-		if(e.getSource()==jbtn4) {}
+		if(e.getSource()==jbtn4) {
+			new HealthCare();
+		}
 		
 	}
 	public static void main(String[] args) {
