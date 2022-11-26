@@ -1,48 +1,102 @@
-import javax.swing.*;				//자바책 444p 참조로 제작함
-import java.awt.*;
+import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Toolkit;
+
+import javax.swing.*;			
 import java.awt.event.*;
+import javax.swing.JFrame;
+import javax.swing.ImageIcon;
+
 
 public class 댕비서 extends JFrame implements ActionListener {
 	JButton jbtn1, jbtn2, jbtn3, jbtn4;
+	private JFrame frame;
+	
 
-	댕비서() {
-		super("댕비서");
-		setLayout(new FlowLayout());
-		jbtn1 = new JButton("산책");
-		add(jbtn1);
-		jbtn2 = new JButton("검색");
-		add(jbtn2);
-		jbtn3 = new JButton("소통");
-		add(jbtn3);
-		jbtn4 = new JButton("건강");
-		add(jbtn4);
-	
-		jbtn1.addActionListener(this);
-		jbtn2.addActionListener(this);
-		jbtn3.addActionListener(this);
-		jbtn4.addActionListener(this);
-	
-		setSize(300,100);
-		setVisible(true);
-}
-	public void actionPerformed(ActionEvent e) {
-		if(e.getSource()==jbtn1) {
-			
-		}
-		
-		if(e.getSource()==jbtn2) {				//작업 이진혁								
-			String search =JOptionPane.showInputDialog(this, "애완식품을 입력하세요");
-			System.out.println("검색 : " + search);		//데이터베이스를 사용하여 검색한 값을 패널로 출력해야함 현재 데이터베이스 연동도안되어있으며 콘솔로 출력되고있음 수정예정부분
-		}
-		
-		if(e.getSource()==jbtn3) {}
-		if(e.getSource()==jbtn4) {
-			new HealthCare();
-		}
-		
-	}
+	/**
+	 * Launch the application.
+	 */
 	public static void main(String[] args) {
-		댕비서 aet = new 댕비서();
-		aet.setDefaultCloseOperation(EXIT_ON_CLOSE);
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					댕비서 window = new 댕비서();
+					window.frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
 	}
+
+	/**
+	 * Create the application.
+	 */
+	public 댕비서() {
+		setTitle("댕비서");
+		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\\\성결대\\\\2학년 2학기\\\\자바응용\\\\팀프로젝트\\\\사진자료\\\\메인아이콘.png"));
+		getContentPane().setBackground(new Color(255, 255, 255));
+		initialize();
+	}
+
+	/**
+	 * Initialize the contents of the frame.
+	 */
+	private void initialize() {
+		getContentPane().setLayout(null);
+		jbtn1 = new JButton("산책");
+		jbtn1.setBounds(12, 5, 100, 23);
+		getContentPane().add(jbtn1);
+		jbtn2 = new JButton("검색");
+		jbtn2.setBounds(123, 5, 100, 23);
+		getContentPane().add(jbtn2);
+		jbtn3 = new JButton("소통");
+		jbtn3.setBounds(235, 5, 100, 23);
+		getContentPane().add(jbtn3);
+		jbtn4 = new JButton("건강");
+		jbtn4.setBounds(340, 5, 100, 23);
+		getContentPane().add(jbtn4);
+		
+		JLabel lblNewLabel = new JLabel("New label");
+		lblNewLabel.setIcon(new ImageIcon("D:\\성결대\\2학년 2학기\\자바응용\\팀프로젝트\\사진자료\\메인화면_수정본.jpg"));
+		lblNewLabel.setBounds(22, 38, 418, 415);
+		getContentPane().add(lblNewLabel);
+		
+		
+	
+		jbtn1.addActionListener(new ActionListener(){
+			public void actionPerformed(ActionEvent e) {
+				new walk();
+				setVisible(false);
+				
+			}
+		});
+		jbtn2.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new PROFILE();
+				setVisible(false);
+			}
+		});
+		
+		jbtn3.addActionListener(this);
+		jbtn4.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new HealthCare();
+				setVisible(false);
+				
+			}
+		});
+	
+		setSize(482,502);
+		setVisible(true);
+		frame.setBounds(100, 100, 450, 300);
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		
+	}
+
 }
