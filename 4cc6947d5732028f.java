@@ -47,10 +47,10 @@ public class 댕비서 extends JFrame implements ActionListener {
 		jbtn1 = new JButton("산책");
 		jbtn1.setBounds(12, 5, 100, 23);
 		getContentPane().add(jbtn1);
-		jbtn2 = new JButton("검색");
+		jbtn2 = new JButton("프로필");
 		jbtn2.setBounds(123, 5, 100, 23);
 		getContentPane().add(jbtn2);
-		jbtn3 = new JButton("소통");
+		jbtn3 = new JButton("검색");
 		jbtn3.setBounds(235, 5, 100, 23);
 		getContentPane().add(jbtn3);
 		jbtn4 = new JButton("건강");
