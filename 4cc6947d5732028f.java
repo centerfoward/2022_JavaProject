@@ -78,7 +78,12 @@ public class 댕비서 extends JFrame implements ActionListener {
 			}
 		});
 		
-		jbtn3.addActionListener(this);
+		jbtn3.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				new search();
+				setVisible(false);
+			}
+		});
 		jbtn4.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				new HealthCare();
