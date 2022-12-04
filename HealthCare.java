@@ -1,14 +1,10 @@
-import java.awt.Color;
-import java.awt.EventQueue;
-import java.awt.Toolkit;
-
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
-import javax.swing.JFrame;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-public class HealthCare extends JFrame implements ActionListener {
-
-	private JFrame frame;
+public class HealthCare extends JFrame implements ActionListener{
 	JTextField tf1, tf2;
 	JLabel lb1, lb2, lb3, lb4, Jlabelkg, Jlabelage;
 	JTextArea ta = new JTextArea(4, 30);
@@ -16,63 +12,33 @@ public class HealthCare extends JFrame implements ActionListener {
 	JPanel panel1, panel2;
 	JButton rsltBtn1, MainBtn;
 	int weight;
-	//const tf1 = parseFloat(str)
-	/*
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					HealthCare window = new HealthCare();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the application.
-	 */
-	public HealthCare() {
-		setTitle("ëŒ•ë¹„ì„œ");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\\\ì„±ê²°ëŒ€\\\\2í•™ë…„ 2í•™ê¸°\\\\ìë°”ì‘ìš©\\\\íŒ€í”„ë¡œì íŠ¸\\\\ì‚¬ì§„ìë£Œ\\\\ë©”ì¸ì•„ì´ì½˜.png"));
-		getContentPane().setBackground(new Color(255, 255, 255));
-		initialize();
-	}
-
-	/**
-	 * Initialize the contents of the frame.
-	 */
-	private void initialize() {
-		frame = new JFrame();
-		frame.setBounds(100, 100, 450, 300);
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	int calorie;
+	String[] SmallArray = {"Ä¡¿Í¿Í","ºñ¼õ","¸ôÆ¼Áî", "½´³ª¿ìÀú","Çªµé","ÇÉ¼Å", "ºñ±Û","½Ã¹Ù","½ÃÃò", "Æ÷¸Ş¶ó´Ï¾È", "¿äÅ©¼Å Å×¸®¾î", "À£½Ã ÄÚ±â"};
+	String[] BigArray = {"´Ú½ºÈÆÆ®","ºÒµ¶","°ñµç ¸®Æ®¸®¹ö", "·¡ºê¶óµµ","»ç¸ğ¿¹µå","Çã½ºÅ°", "Áøµ¾°³"};
+	ArrayList<String> SmallList = new ArrayList<>(Arrays.asList(SmallArray));
+	ArrayList<String> BigList = new ArrayList<>(Arrays.asList(BigArray));
+	//const tf1 = parseInt(str);
+	
+	HealthCare() {
+		super("°Ç°­°ü¸®");
 		setSize(400, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		lb1 = new JLabel("ì• ì™„ë™ë¬¼ì˜ ë¬´ê²Œ");
+		lb1 = new JLabel("¾Ö¿Ïµ¿¹°ÀÇ ¹«°Ô");
 		tf1 = new JTextField(5);
 		Jlabelkg = new JLabel("KG");
-		lb2 = new JLabel("ì• ì™„ë™ë¬¼ì˜ ë‚˜ì´");
+		lb2 = new JLabel("¾Ö¿Ïµ¿¹°ÀÇ ³ªÀÌ");
 		tf2 = new JTextField(5);
-		Jlabelage = new JLabel("ì‚´");
-		lb3 = new JLabel("í’ˆì¢…ì„ ì„ íƒí•´ì£¼ì„¸ìš”");
-		String[] list = {"ë‹¥ìŠ¤í›ˆíŠ¸", "ì¹˜ì™€ì™€", "ë¶ˆë…", "ë¹„ìˆ‘", "ê³¨ë“  ë¦¬íŠ¸ë¦¬ë²„", "ë˜ë¸Œë¼ë„", "ëª°í‹°ì¦ˆ", 
-				"ìŠˆë‚˜ìš°ì €", "í‘¸ë“¤", "í•€ì…”", "ë¹„ê¸€", "ì‚¬ëª¨ì˜ˆë“œ", "ì‹œë°”", "í—ˆìŠ¤í‚¤", "ì§„ë—ê°œ", "í…Œë¦¬ì–´", "ì›°ì‹œ ì½”ê¸°"};
+		Jlabelage = new JLabel("»ì");
+		lb3 = new JLabel("Ç°Á¾À» ¼±ÅÃÇØÁÖ¼¼¿ä");
+		String[] list = {"´Ú½ºÈÆÆ®", "Ä¡¿Í¿Í", "ºÒµ¶", "ºñ¼õ", "°ñµç ¸®Æ®¸®¹ö", "·¡ºê¶óµµ", "¸ôÆ¼Áî", "½´³ª¿ìÀú",
+				"Çªµé","ÇÉ¼Å", "ºñ±Û", "»ç¸ğ¿¹µå", "½Ã¹Ù", "Çã½ºÅ°", "Áøµ¾°³", "½ÃÃò", "Æ÷¸Ş¶ó´Ï¾È", "¿äÅ©¼Å Å×¸®¾î", "À£½Ã ÄÚ±â"};
+		//´ëÇü°ß ¸®½ºÆ®¿Í ¼ÒÇü°ß ¸®½ºÆ® 2°³¸¦ ¸¸µé°í 
 		ComBox1 = new JComboBox(list);
-		rsltBtn1 = new JButton("ê²°ê³¼");
-		//int calorie = calcCalorie(tf1);
-		lb4 = new JLabel("ê¸°ì´ˆëŒ€ì‚¬ëŸ‰ì€ ì•½ kcalì´ë©° ì•½ 30ë¶„ê°„ ì‚°ì±…í•˜ëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤.");
-		MainBtn = new JButton("ë©”ì¸ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°€ê¸°");
-		MainBtn.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				new ëŒ•ë¹„ì„œ();
-			}
-		});
+		rsltBtn1 = new JButton("°á°ú");
+		lb4 = new JLabel("±âÃÊ´ë»ç·®Àº ¾à kcalÀÌ¸ç ¾à 30ºĞ°£ »êÃ¥ÇÏ´Â °ÍÀÌ ÁÁ½À´Ï´Ù.");
+		MainBtn = new JButton("¸ŞÀÎ È­¸éÀ¸·Î µ¹¾Æ°¡±â");
+		
 		panel1 = new JPanel();
 		panel1.add(lb1);
 		panel1.add(tf1);
@@ -86,18 +52,49 @@ public class HealthCare extends JFrame implements ActionListener {
 		panel1.add(ta);
 		rsltBtn1.addActionListener(this);
 		panel1.add(MainBtn);
-
+		MainBtn.addActionListener(new ActionListener() {
+			
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				new ´óºñ¼­();
+			}
+		});
+		
 		add(panel1);
 		setVisible(true);
-	}
-	public void actionPerformed(ActionEvent e) {
-		ta.setText("ê¸°ì´ˆëŒ€ì‚¬ëŸ‰: " );
 		
 	}
 	
-	private int calcCalorie(int weight) {
-		return 30*weight+70;
+	public void actionPerformed(ActionEvent e) {
+		//if(e.getSource () == MainBtn)
+		ta.setText("±âÃÊ´ë»ç·®Àº " + calcCalorie(Integer.parseInt(tf1.getText())) + "kcalÀÌ¸ç" + "\n" + "¼±ÅÃÇÏ½Å Ç°Á¾Àº " +ComBox1.getSelectedItem().toString()
+				+ "ÀÌ´Ï " + walktime(ComBox1.getSelectedItem().toString()));
+		//int = Á¤¼öºÎºĞÀº ¹®Á¦¾øÀ¸³ª ¸ö¹«°Ô¿¡ ¼Ò¼öÁ¡À» ÀÔ·ÂÇßÀ» ¶§ ¿À·ù°¡ »ı±æ ¼ö ÀÖÀ½
+		//ta.setText("±âÃÊ´ë»ç·®: " + calcCalorie);
+		//ta.append(calorie.getText());
 	}
 	
+	private double calcCalorie(int weight) {
+		if(weight>=2 && weight<45) {
+			return 30*weight+70;
+		}
+		else if(weight<2 || weight>=45) {
+			return 70*(weight*0.75);
+		}else {
+		return 30*weight+70;
+		}
+	}
+	
+	private String walktime(String dogtype) {
+		if(SmallList.contains(dogtype)) {
+			return "20ºĞ¿¡¼­ 1½Ã°£ Á¤µµ »êÃ¥ÇÏ¼¼¿ä";
+		}else {
+			return "1~2½Ã°£ Á¤µµ »êÃ¥ÇÏ¼¼¿ä";
+		}
+	}
+	
+	public static void main(String[] args) {
+		new HealthCare();
+	}
 
 }
