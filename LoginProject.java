@@ -212,8 +212,8 @@ class signupPanel extends JPanel {
 	JTextField phoneTf;
 	JPanel mainPanel;
 	JPanel subPanel;
-	JComboBox<String> monthComboBox;
-	JComboBox<String> dayComboBox;
+	JComboBox<String> dogComboBox;
+	JComboBox<String> dogyearComboBox;
 	JRadioButton menButton;
 	JRadioButton girlButton;
 	JButton registerButton;
@@ -234,7 +234,7 @@ class signupPanel extends JPanel {
 		JLabel passLabel = new JLabel("비밀번호 : ");
 		JLabel passReLabel = new JLabel("비밀번호 재확인 : ");
 		JLabel nameLabel = new JLabel("이름 : ");
-		JLabel birthLabel = new JLabel("생년월일 : ");
+		JLabel birthLabel = new JLabel("반려동물 이름 : 종류 : 나이 ");
 		JLabel sexLabel = new JLabel("성별 : ");
 		JLabel phoneLabel = new JLabel("핸드폰번호 : ");
 
@@ -245,9 +245,10 @@ class signupPanel extends JPanel {
 		yearTf = new JTextField(4);
 		phoneTf = new JTextField(11);
 
-		monthComboBox = new JComboBox<String>(
-				new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12" });
-		dayComboBox = new JComboBox<String>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
+		dogComboBox = new JComboBox<String>(
+				new String[] {"닥스훈트", "치와와", "불독", "비숑", "골든 리트리버", "래브라도", "몰티즈", 
+						"슈나우저", "푸들", "핀셔", "비글", "사모예드", "시바", "허스키", "진돗개", "테리어", "웰시 코기"});
+		dogyearComboBox = new JComboBox<String>(new String[] { "01", "02", "03", "04", "05", "06", "07", "08", "09", "10",
 				"11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27",
 				"28", "29", "30", "31" });
 
@@ -309,12 +310,12 @@ class signupPanel extends JPanel {
 		c.gridx = 2;
 		c.gridy = 4;
 		c.weightx = 0.2;
-		subPanel.add(monthComboBox, c);
+		subPanel.add(dogComboBox, c);
 
 		c.gridx = 3;
 		c.gridy = 4;
 		c.weightx = 0.2;
-		subPanel.add(dayComboBox, c);
+		subPanel.add(dogyearComboBox, c);
 
 		c.gridx = 0;
 		c.gridy = 5;
@@ -350,11 +351,11 @@ class signupPanel extends JPanel {
 		mainPanel.add(subPanel);
 		mainPanel.add(registerButton);
 
-		monthComboBox.addActionListener(new ActionListener() {
+		dogComboBox.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				if (e.getSource() == monthComboBox) {
+				if (e.getSource() == dogComboBox) {
 					JComboBox monthBox = (JComboBox) e.getSource();
 					month = (String) monthBox.getSelectedItem();
 					System.out.println(month);
@@ -362,12 +363,12 @@ class signupPanel extends JPanel {
 
 			}
 		});
-		dayComboBox.addActionListener(new ActionListener() {
+		dogyearComboBox.addActionListener(new ActionListener() {
 
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				// TODO Auto-generated method stub
-				if (e.getSource() == dayComboBox) {
+				if (e.getSource() == dogyearComboBox) {
 					JComboBox dayBox = (JComboBox) e.getSource();
 					day = (String) dayBox.getSelectedItem();
 					System.out.println(month);
