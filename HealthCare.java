@@ -13,31 +13,31 @@ public class HealthCare extends JFrame implements ActionListener{
 	JButton rsltBtn1, MainBtn;
 	int weight;
 	int calorie;
-	String[] SmallArray = {"Ä¡¿Í¿Í","ºñ¼õ","¸ôÆ¼Áî", "½´³ª¿ìÀú","Çªµé","ÇÉ¼Å", "ºñ±Û","½Ã¹Ù","½ÃÃò", "Æ÷¸Ş¶ó´Ï¾È", "¿äÅ©¼Å Å×¸®¾î", "À£½Ã ÄÚ±â"};
-	String[] BigArray = {"´Ú½ºÈÆÆ®","ºÒµ¶","°ñµç ¸®Æ®¸®¹ö", "·¡ºê¶óµµ","»ç¸ğ¿¹µå","Çã½ºÅ°", "Áøµ¾°³"};
+	String[] SmallArray = {"ì¹˜ì™€ì™€","ë¹„ìˆ‘","ëª°í‹°ì¦ˆ", "ìŠˆë‚˜ìš°ì €","í‘¸ë“¤","í•€ì…”", "ë¹„ê¸€","ì‹œë°”","ì‹œì¸„", "í¬ë©”ë¼ë‹ˆì•ˆ", "ìš”í¬ì…” í…Œë¦¬ì–´", "ì›°ì‹œ ì½”ê¸°"};
+	String[] BigArray = {"ë‹¥ìŠ¤í›ˆíŠ¸","ë¶ˆë…","ê³¨ë“  ë¦¬íŠ¸ë¦¬ë²„", "ë˜ë¸Œë¼ë„","ì‚¬ëª¨ì˜ˆë“œ","í—ˆìŠ¤í‚¤", "ì§„ë—ê°œ"};
 	ArrayList<String> SmallList = new ArrayList<>(Arrays.asList(SmallArray));
 	ArrayList<String> BigList = new ArrayList<>(Arrays.asList(BigArray));
 	//const tf1 = parseInt(str);
 	
 	HealthCare() {
-		super("°Ç°­°ü¸®");
+		super("ê±´ê°•ê´€ë¦¬");
 		setSize(400, 400);
 		setVisible(true);
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		lb1 = new JLabel("¾Ö¿Ïµ¿¹°ÀÇ ¹«°Ô");
+		lb1 = new JLabel("ì• ì™„ë™ë¬¼ì˜ ë¬´ê²Œ");
 		tf1 = new JTextField(5);
 		Jlabelkg = new JLabel("KG");
-		lb2 = new JLabel("¾Ö¿Ïµ¿¹°ÀÇ ³ªÀÌ");
+		lb2 = new JLabel("ì• ì™„ë™ë¬¼ì˜ ë‚˜ì´");
 		tf2 = new JTextField(5);
-		Jlabelage = new JLabel("»ì");
-		lb3 = new JLabel("Ç°Á¾À» ¼±ÅÃÇØÁÖ¼¼¿ä");
-		String[] list = {"´Ú½ºÈÆÆ®", "Ä¡¿Í¿Í", "ºÒµ¶", "ºñ¼õ", "°ñµç ¸®Æ®¸®¹ö", "·¡ºê¶óµµ", "¸ôÆ¼Áî", "½´³ª¿ìÀú",
-				"Çªµé","ÇÉ¼Å", "ºñ±Û", "»ç¸ğ¿¹µå", "½Ã¹Ù", "Çã½ºÅ°", "Áøµ¾°³", "½ÃÃò", "Æ÷¸Ş¶ó´Ï¾È", "¿äÅ©¼Å Å×¸®¾î", "À£½Ã ÄÚ±â"};
-		//´ëÇü°ß ¸®½ºÆ®¿Í ¼ÒÇü°ß ¸®½ºÆ® 2°³¸¦ ¸¸µé°í 
+		Jlabelage = new JLabel("ì‚´");
+		lb3 = new JLabel("í’ˆì¢…ì„ ì„ íƒí•´ì£¼ì„¸ìš”");
+		String[] list = {"ë‹¥ìŠ¤í›ˆíŠ¸", "ì¹˜ì™€ì™€", "ë¶ˆë…", "ë¹„ìˆ‘", "ê³¨ë“  ë¦¬íŠ¸ë¦¬ë²„", "ë˜ë¸Œë¼ë„", "ëª°í‹°ì¦ˆ", "ìŠˆë‚˜ìš°ì €",
+				"í‘¸ë“¤","í•€ì…”", "ë¹„ê¸€", "ì‚¬ëª¨ì˜ˆë“œ", "ì‹œë°”", "í—ˆìŠ¤í‚¤", "ì§„ë—ê°œ", "ì‹œì¸„", "í¬ë©”ë¼ë‹ˆì•ˆ", "ìš”í¬ì…” í…Œë¦¬ì–´", "ì›°ì‹œ ì½”ê¸°"};
+		//ëŒ€í˜•ê²¬ ë¦¬ìŠ¤íŠ¸ì™€ ì†Œí˜•ê²¬ ë¦¬ìŠ¤íŠ¸ 2ê°œë¥¼ ë§Œë“¤ê³  
 		ComBox1 = new JComboBox(list);
-		rsltBtn1 = new JButton("°á°ú");
-		lb4 = new JLabel("±âÃÊ´ë»ç·®Àº ¾à kcalÀÌ¸ç ¾à 30ºĞ°£ »êÃ¥ÇÏ´Â °ÍÀÌ ÁÁ½À´Ï´Ù.");
-		MainBtn = new JButton("¸ŞÀÎ È­¸éÀ¸·Î µ¹¾Æ°¡±â");
+		rsltBtn1 = new JButton("ê²°ê³¼");
+		lb4 = new JLabel("ê¸°ì´ˆëŒ€ì‚¬ëŸ‰ì€ ì•½ kcalì´ë©° ì•½ 30ë¶„ê°„ ì‚°ì±…í•˜ëŠ” ê²ƒì´ ì¢‹ìŠµë‹ˆë‹¤.");
+		MainBtn = new JButton("ë©”ì¸ í™”ë©´ìœ¼ë¡œ ëŒì•„ê°€ê¸°");
 		
 		panel1 = new JPanel();
 		panel1.add(lb1);
@@ -56,7 +56,8 @@ public class HealthCare extends JFrame implements ActionListener{
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
-				new ´óºñ¼­();
+				setVisible(false);
+				new ëŒ•ë¹„ì„œ();
 			}
 		});
 		
@@ -67,10 +68,10 @@ public class HealthCare extends JFrame implements ActionListener{
 	
 	public void actionPerformed(ActionEvent e) {
 		//if(e.getSource () == MainBtn)
-		ta.setText("±âÃÊ´ë»ç·®Àº " + calcCalorie(Integer.parseInt(tf1.getText())) + "kcalÀÌ¸ç" + "\n" + "¼±ÅÃÇÏ½Å Ç°Á¾Àº " +ComBox1.getSelectedItem().toString()
-				+ "ÀÌ´Ï " + walktime(ComBox1.getSelectedItem().toString()));
-		//int = Á¤¼öºÎºĞÀº ¹®Á¦¾øÀ¸³ª ¸ö¹«°Ô¿¡ ¼Ò¼öÁ¡À» ÀÔ·ÂÇßÀ» ¶§ ¿À·ù°¡ »ı±æ ¼ö ÀÖÀ½
-		//ta.setText("±âÃÊ´ë»ç·®: " + calcCalorie);
+		ta.setText("ê¸°ì´ˆëŒ€ì‚¬ëŸ‰ì€ " + calcCalorie(Integer.parseInt(tf1.getText())) + "kcalì´ë©°" + "\n" + "ì„ íƒí•˜ì‹  í’ˆì¢…ì€ " +ComBox1.getSelectedItem().toString()
+				+ "ì´ë‹ˆ " + walktime(ComBox1.getSelectedItem().toString()));
+		//int = ì •ìˆ˜ë¶€ë¶„ì€ ë¬¸ì œì—†ìœ¼ë‚˜ ëª¸ë¬´ê²Œì— ì†Œìˆ˜ì ì„ ì…ë ¥í–ˆì„ ë•Œ ì˜¤ë¥˜ê°€ ìƒê¸¸ ìˆ˜ ìˆìŒ
+		//ta.setText("ê¸°ì´ˆëŒ€ì‚¬ëŸ‰: " + calcCalorie);
 		//ta.append(calorie.getText());
 	}
 	
@@ -87,9 +88,9 @@ public class HealthCare extends JFrame implements ActionListener{
 	
 	private String walktime(String dogtype) {
 		if(SmallList.contains(dogtype)) {
-			return "20ºĞ¿¡¼­ 1½Ã°£ Á¤µµ »êÃ¥ÇÏ¼¼¿ä";
+			return "20ë¶„ì—ì„œ 1ì‹œê°„ ì •ë„ ì‚°ì±…í•˜ì„¸ìš”";
 		}else {
-			return "1~2½Ã°£ Á¤µµ »êÃ¥ÇÏ¼¼¿ä";
+			return "1~2ì‹œê°„ ì •ë„ ì‚°ì±…í•˜ì„¸ìš”";
 		}
 	}
 	
