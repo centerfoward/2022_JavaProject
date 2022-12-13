@@ -35,7 +35,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JRadioButton;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.table.DefaultTableModel;
 
 public class PRO {
 
@@ -221,7 +225,7 @@ class LoginPanel extends JPanel implements ActionListener {
 
 				if (pass.equals(rset.getString(1))) {
 					JOptionPane.showMessageDialog(this, "Login Success", "로그인 성공", 1);
-					new PROFILE();
+					new tableview();
 					PRO.jf.setVisible(false);
 					
 					} else
@@ -487,121 +491,85 @@ class signupPanel extends JPanel {
 	}
 };
 
-
-class PROFILE extends JFrame implements ActionListener{
-	JLabel lb1, lb2, lb3 , lb4;JTextField breed; 
-	JTextField pet; 
-	String query;
-	Statement stmt;
-	ResultSet rs;
-	public String id;
+class tableview extends JFrame implements ActionListener { 
 	
-	private JFrame frame;
-	private JLabel lblNewLabel;
+	 
+	  String[] name = { "번호", "이름", "견종"};
+	  
+	  DefaultTableModel dt = new DefaultTableModel(name, 0);
+	  JTable jt = new JTable(dt);
+	  JScrollPane jsp = new JScrollPane(jt);
 
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					PROFILE window = new PROFILE();
-					window.frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
+	  JPanel panel = new JPanel();
+	  String[] comboName = { "  번호  ", "  이름  ", "  견종 "};
+
+	  JComboBox combo = new JComboBox(comboName);
+
+	  JButton serach = new JButton("검색");
+	  JTextArea jta = new JTextArea(20,20);
+	  public Connection getConnection() throws SQLException {
+			Connection conn = null;
+			
+			String jdbc_url = "jdbc:mysql://localhost:3306/dogbesa?serverTimezone=UTC"; 
+			Connection con; Statement stmt; 
+			
+			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dogbesa?serverTimezone=UTC", "root",
+					"1234"); //데이터베이스 이름 : dogbesa,   테이블 이름 : user_info, 행 : id, password, name, birthday, phoneNumber, sex, dog
+			
+
+			return conn;
+	 
+	  }
+
+	  tableview(){
+		  super("회원 명단");
+
+		  setSize(500, 500);
+			setVisible(true);
+			setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			setVisible(true);
+			
+			panel.setBackground(Color.white);
+
+	        panel.add(jta);
+	        panel.add(serach);
+	        
+	        add(jsp, "Center");
+	        add(panel, "South");
+	        
+	        serach.addActionListener(this);
+	        }
+	        public void actionPerformed(ActionEvent e) {
+	        	String jdbc_url = "jdbc:mysql://localhost:3306/dogbesa?serverTimezone=UTC"; 
+	        	Connection con; Statement stmt; 
+	        	
+	        	try { 
+	        	Class.forName("com.mysql.cj.jdbc.Driver"); 
+	        	}catch(ClassNotFoundException ss) { 
+	        	System.err.println("ClassNotFoundException: " + ss.getMessage()); 
+	        	} 
+	        	try{ 
+	        	con = DriverManager.getConnection(jdbc_url, "root", "1234"); 
+	        	stmt = con.createStatement(); 
+	        	String sql ="SELECT * FROM user_info"; 
+	        	ResultSet rs = stmt.executeQuery(sql); 
+	    
+	        	while(rs.next()) { 
+	        	int phoneNumber = rs.getInt("phoneNumber"); 
+	        	String name = rs.getString("name");
+	        	String dog = rs.getString("dog");
+	        
+	        	jta.append("        "+ phoneNumber + "     |     " + name + "     |     " +dog + "\n");
+	        	} 
+	        	rs.close(); 
+	        	stmt.close(); 
+	        	con.close(); 
+	        	}catch(SQLException ss) { 
+	        		System.err.println("SQLException: " + ss.getMessage()); 
+	        	}
 			}
-		});
-	}
 
-	PROFILE() throws Exception {
-		setTitle("댕비서");
-		setIconImage(Toolkit.getDefaultToolkit().getImage("D:\\\\성결대\\\\2학년 2학기\\\\자바응용\\\\팀프로젝트\\\\사진자료\\\\메인아이콘.png"));
-		getContentPane().setBackground(new Color(255, 255, 255));
-		initialize();
-	}
-
-	void initialize() throws Exception {
-		lb1 = new JLabel(" \uC774\uB984");
-		lb1.setFont(new Font("굴림", Font.BOLD, 20));
-		lb1.setBackground(new Color(255, 255, 255));
-		lb1.setForeground(new Color(64, 128, 128));
-		lb1.setBounds(0,12,63,21);
-
-		lb2 = new JLabel(" \uACAC\uC885"); 
-		lb2.setBackground(new Color(0, 0, 0));
-		lb2.setForeground(new Color(64, 128, 128));
-		lb2.setFont(new Font("굴림", Font.BOLD, 20));
-		lb2.setBounds(0,33,63,23);
-
-		lb3 = new JLabel("애견명");
-		lb3.setForeground(new Color(64, 128, 128));
-		lb3.setFont(new Font("굴림", Font.BOLD, 20));
-		lb3.setBounds(0,66,63,23);
-		pet = new JTextField(20);
-		pet.setLocation(65,66);
-		pet.setHorizontalAlignment(JTextField.CENTER);
-		pet.setSize(307,21);
-		
-
-		getContentPane().setLayout(null);
-
-		getContentPane().add(lb1);
-		getContentPane().add(lb2);
-		getContentPane().add(lb3);
-		getContentPane().add(pet);
-		breed = new JTextField(20);
-		breed.setLocation(65,36);
-		breed.setHorizontalAlignment(JTextField.CENTER);
-		breed.setSize(307,21);
-		getContentPane().add(breed);
-		
-		JButton MenuButton = new JButton("메인화면으로 돌아가기");
-		MenuButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
-				//new 댕비서();
-			}
-		});
-		MenuButton.setBounds(127, 578, 164, 23);
-		getContentPane().add(MenuButton);
-		
-		lblNewLabel = new JLabel();
-		lblNewLabel.setIcon(new ImageIcon("D:\\\uC131\uACB0\uB300\\2\uD559\uB144 2\uD559\uAE30\\\uC790\uBC14\uC751\uC6A9\\\uD300\uD504\uB85C\uC81D\uD2B8\\\uC0AC\uC9C4\uC790\uB8CC\\\uC11C\uBE0C_\uC218\uC815.jpg"));
-		lblNewLabel.setBounds(10, 99, 362, 502);
-		getContentPane().add(lblNewLabel);
-		
-		JLabel name = new JLabel();
-		name.setBounds(65, 12, 307, 20);
-		getContentPane().add(name);
-		name.setText(getInfo());
-		setSize(400,650); 
-		setVisible(true); 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	}
-
-	@Override
-	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
-	}
-	
-	String getInfo() throws Exception{
-		PRO LP = new PRO();
-		LoginPanel LPA = new LoginPanel(LP.lp);
-		Connection conn = null;
-		conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/dogbesa?serverTimezone=UTC", "root",
-				"1234"); //데이터베이스 이름 : dogbesa,   테이블 이름 : user_info, 행 : id, password, name, birthday, phoneNumber, sex
-
-		id = (String)LPA.idTextField.getText();
-		query = "SELECT * FROM user_info";
-		stmt = conn.createStatement();
-		rs = stmt.executeQuery(query);
-		while(rs.next()) {
-			if(rs.getString(1) == LPA.getter()) {
-				break;
-			}
-		}
-			return id;
-	
-}
-}
+	  public static void main(String[] args){ 
+		  new tableview();
+	  }}
 
