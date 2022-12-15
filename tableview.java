@@ -28,6 +28,9 @@ public class tableview extends JFrame implements ActionListener {
 
   JButton serach = new JButton("검색");
   JTextArea jta = new JTextArea(20,20);
+
+
+  
   public Connection getConnection() throws SQLException {
 		Connection conn = null;
 		
@@ -78,10 +81,11 @@ public class tableview extends JFrame implements ActionListener {
         	while(rs.next()) { 
         	int phoneNumber = rs.getInt("phoneNumber"); 
         	String name = rs.getString("name");
-        	String dog = rs.getString("dog");
+        	String birthday = rs.getString("birthday");
         
-        	jta.append("        "+ phoneNumber + "     |     " + name + "     |     " +dog + "\n");
+        	jta.append("        "+ phoneNumber + "     |     " + name + "     |     " + birthday + "\n");
         	} 
+        	
         	rs.close(); 
         	stmt.close(); 
         	con.close(); 
